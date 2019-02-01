@@ -40,3 +40,11 @@ body{
 .title{
     color: rgb(0, 0, 0);
 }
+@media (max-width: 576px){
+    .wrap{
+        width: 90%;
+    }
+    .main-input{
+        
+    }
+}
