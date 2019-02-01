@@ -40,6 +40,10 @@ body{
 }
 .title{
     color: rgb(0, 0, 0);
+    font-size: 22px;
+}
+#bye{
+    color: orangered;
 }
 @media (max-width: 576px){
     .wrap{
