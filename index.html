@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Family budget calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="title">Калькулятор для быстрого распределения денег по категориям бюджета</h1>
+        <div class="wrap">
+            <label class="string" for="how-match" id="label">Введи сколько ты заработал:</label>
+            <input name="how-match" type="text" v-model="howMatch" id="main-input">
+            <div class="string" v-if="toNum" id="wow">Ого! Целых <span class="number">{{toNum}}</span> деревянных!
+                Значит расклад такой:</div>
+            <div class="string" v-if="toNum" id="nz"><span class="number">{{nz}}</span> рублей на подушку безопасности,</div>
+            <div class="string" v-if="toNum" id="relax"><span class="number">{{relax}}</span> рублей на развлечения,</div>
+            <div class="string" v-if="toNum" id="blago"><span class="number">{{blago}}</span> рублей на
+                благотворительность,</div>
+            <div class="string" v-if="toNum" id="parents"><span class="number">{{parents}}</span> рублей для родителей,</div>
+            <div class="string" v-if="toNum" id="capital"><span class="number">{{capital}}</span> рублей в капитал,</div>
+            <div class="string" v-if="toNum" id="current"><span class="number">{{current}}</span> рублей на текущие
+                расходы.</div>
+            <div class="string" v-if="toNum" id="bye">Ты-победитель, помни! Заглядывай ко мне почаще.</div>
+            <div class="string" v-if="!toNum" id="bye">Ну же...</div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                howMatch: '',
+                income: 0
+            },
+            computed: {
+                toNum: function () {
+                    return parseInt(this.howMatch);
+                },
+                nz: function () {
+                    if (this.toNum) {
+                        var prom = this.toNum * 0.1;
+                        return Math.round(prom);
+                    }
+                },
+                relax: function () {
+                    if (this.toNum) {
+                        var prom = this.toNum * 0.1;
+                        return Math.round(prom);
+                    }
+                },
+                blago: function () {
+                    if (this.toNum) {
+                        var prom = this.toNum * 0.01;
+                        return Math.round(prom);
+                    }
+                },
+                parents: function () {
+                    if (this.toNum) {
+                        var prom = this.toNum * 0.05;
+                        return Math.round(prom);
+                    }
+                },
+                capital: function () {
+                    this.income = this.toNum - this.nz - this.relax - this.blago - this.parents;
+                    if (this.toNum) {
+                        var prom = this.income * 0.55;
+                        return Math.round(prom);
+                    }
+                },
+                current: function () {
+                    this.income = this.toNum - this.nz - this.relax - this.blago - this.parents;
+                    if (this.toNum) {
+                        var prom = this.income * 0.45;
+                        return Math.round(prom);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
