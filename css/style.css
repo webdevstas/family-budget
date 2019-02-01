@@ -32,6 +32,7 @@ body{
     padding: 5px;
     font-weight: 600;
     font-size: 18px;
+    text-align: center;
 }
 .number{
     color: orangered;
@@ -45,6 +46,6 @@ body{
         width: 90%;
     }
     .main-input{
-        
+
     }
 }
