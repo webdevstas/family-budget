@@ -6,17 +6,21 @@ body{
 }
 
 #app{
-    width: 100%;
-    height: 100%;
+    width: 98vw;
+    height: 96vh;
     text-align: center;
+    position: relative;
 }
 .wrap{
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     width: 50%;
-    margin: auto;
     min-height: 350px;
-    border-radius: 5px
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 #label{
     display: block;
