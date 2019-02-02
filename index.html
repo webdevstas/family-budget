@@ -23,7 +23,8 @@
             <div class="string" v-if="toNum" id="blago"><span class="number">{{blago}}</span> рублей на
                 благотворительность,</div>
             <div class="string" v-if="toNum" id="parents"><span class="number">{{parents}}</span> рублей для родителей,</div>
-            <div class="string" v-if="toNum" id="capital"><span class="number">{{capital}}</span> рублей в капитал, из них <span class="number">{{dream}}</span> на мечту.</div>
+            <div class="string" v-if="toNum" id="dream"><span class="number">{{dream}}</span> на мечту,</div>
+            <div class="string" v-if="toNum" id="capital"><span class="number">{{capital}}</span> рублей в капитал,</div>
             <div class="string" v-if="toNum" id="current"><span class="number">{{current}}</span> рублей на текущие
                 расходы.</div>
             <div class="string" v-if="toNum" id="bye">Ты-победитель, помни! Заглядывай ко мне почаще.</div>
@@ -68,13 +69,13 @@
                 capital: function () {
                     this.income = this.toNum - this.nz - this.relax - this.blago - this.parents;
                     if (this.toNum) {
-                        var prom = this.income * 0.55;
+                        var prom = (this.income * 0.55)*0.8;
                         return Math.round(prom);
                     }
                 },
                 dream: function() {
                     if (this.toNum) {
-                        var prom = this.capital * 0.2;
+                        var prom = (this.income * 0.55) * 0.2;
                         return Math.round(prom);
                     }
                 },
