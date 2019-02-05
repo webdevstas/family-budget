@@ -18,11 +18,12 @@
             <input name="how-match" type="text" v-model="howMatch" id="main-input">
             <div class="string" v-if="toNum" id="wow">Ого! Целых <span class="number">{{toNum}}</span> деревянных!
                 Значит расклад такой:</div>
-            <div class="string" v-if="toNum" id="nz"><span class="number">{{nz}}</span> рублей на подушку безопасности,</div>
-            <div class="string" v-if="toNum" id="relax"><span class="number">{{relax}}</span> рублей на развлечения,</div>
             <div class="string" v-if="toNum" id="blago"><span class="number">{{blago}}</span> рублей на
                 благотворительность,</div>
             <div class="string" v-if="toNum" id="parents"><span class="number">{{parents}}</span> рублей для родителей,</div>
+    
+            <div class="string" v-if="toNum" id="nz"><span class="number">{{nz}}</span> рублей на подушку безопасности,</div>
+            <div class="string" v-if="toNum" id="relax"><span class="number">{{relax}}</span> рублей на развлечения,</div>
             <div class="string" v-if="toNum" id="dream"><span class="number">{{dream}}</span> на мечту,</div>
             <div class="string" v-if="toNum" id="capital"><span class="number">{{capital}}</span> рублей в капитал,</div>
             <div class="string" v-if="toNum" id="current"><span class="number">{{current}}</span> рублей на текущие
@@ -44,13 +45,13 @@
                 },
                 nz: function () {
                     if (this.toNum) {
-                        var prom = this.toNum * 0.1;
+                        var prom = this.income * 0.1;
                         return Math.round(prom);
                     }
                 },
                 relax: function () {
                     if (this.toNum) {
-                        var prom = this.toNum * 0.1;
+                        var prom = this.income * 0.1;
                         return Math.round(prom);
                     }
                 },
@@ -67,20 +68,19 @@
                     }
                 },
                 capital: function () {
-                    this.income = this.toNum - this.nz - this.relax - this.blago - this.parents;
+                    this.income = this.toNum - this.blago - this.parents;
                     if (this.toNum) {
-                        var prom = (this.income * 0.55)*0.8;
+                        var prom = (this.income * 0.55) * 0.8;
                         return Math.round(prom);
                     }
                 },
-                dream: function() {
+                dream: function () {
                     if (this.toNum) {
                         var prom = (this.income * 0.55) * 0.2;
                         return Math.round(prom);
                     }
                 },
                 current: function () {
-                    this.income = this.toNum - this.nz - this.relax - this.blago - this.parents;
                     if (this.toNum) {
                         var prom = this.income * 0.45;
                         return Math.round(prom);
