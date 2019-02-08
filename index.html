@@ -41,14 +41,14 @@
         <div class="wrap">
             <label class="string" for="how-match" id="label">Введи сколько ты заработал:</label>
             <input name="how-match" type="text" v-model="howMatch" id="main-input">
-            <div class="string bordered" v-if="toNum" id="wow">Общий доход: <span class="number">{{toNum}}</span></div>
+            <div class="string bordered" v-if="toNum" id="wow">Общий доход: <span class="number">{{toNum}}</span>рублей</div>
             <div class="string" v-if="toNum" id="blago"><span class="number">{{blago}}</span> рублей на
                 благотворительность,</div>
             <div class="string" v-if="toNum" id="parents"><span class="number">{{parents}}</span> родителям.</div>
-            <div class="string bordered" v-if="toNum" id="family-income">Семейный доход:<span class="number">{{familyIncome}}</span></div>
+            <div class="string bordered" v-if="toNum" id="family-income">Семейный доход: <span class="number">{{familyIncome}}</span>рублей</div>
             <div class="string" v-if="toNum" id="nz"><span class="number">{{nz}}</span> рублей на подушку безопасности,</div>
             <div class="string" v-if="toNum" id="relax"><span class="number">{{relax}}</span> рублей на развлечения.</div>
-            <div class="string bordered" v-if="toNum" id="income">100% общий доход:<span class="number">{{income}}</span></div>
+            <div class="string bordered" v-if="toNum" id="income">100% общий доход: <span class="number">{{income}}</span>рублей</div>
             <div class="string" v-if="toNum" id="dream"><span class="number">{{dream}}</span> на мечту,</div>
             <div class="string" v-if="toNum" id="capital"><span class="number">{{capital}}</span> рублей в капитал,</div>
             <div class="string" v-if="toNum" id="current"><span class="number">{{current}}</span> рублей на текущие
