@@ -46,6 +46,10 @@ body{
     color: rgb(0, 0, 0);
     font-size: 22px;
 }
+.bordered{
+    border-top: 1px solid #000;
+    padding-top: 10px;
+}
 #bye{
     color: orangered;
 }

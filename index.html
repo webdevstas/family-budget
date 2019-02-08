@@ -12,18 +12,18 @@
 
 <body>
     <div id="app">
-        <h1 class="title">Калькулятор для быстрого распределения денег по категориям бюджета</h1>
+        <h1 class="title">Калькулятор для быстрого распределения дохода по категориям бюджета</h1>
         <div class="wrap">
             <label class="string" for="how-match" id="label">Введи сколько ты заработал:</label>
             <input name="how-match" type="text" v-model="howMatch" id="main-input">
-            <div class="string" v-if="toNum" id="wow">Ого! Целых <span class="number">{{toNum}}</span> деревянных!
-                Значит расклад такой:</div>
+            <div class="string bordered" v-if="toNum" id="wow">Общий доход: <span class="number">{{toNum}}</span></div>
             <div class="string" v-if="toNum" id="blago"><span class="number">{{blago}}</span> рублей на
                 благотворительность,</div>
-            <div class="string" v-if="toNum" id="parents"><span class="number">{{parents}}</span> рублей для родителей,</div>
-    
+            <div class="string" v-if="toNum" id="parents"><span class="number">{{parents}}</span> родителям.</div>
+            <div class="string bordered" v-if="toNum" id="family-income">Семейный доход:<span class="number">{{familyIncome}}</span></div>
             <div class="string" v-if="toNum" id="nz"><span class="number">{{nz}}</span> рублей на подушку безопасности,</div>
-            <div class="string" v-if="toNum" id="relax"><span class="number">{{relax}}</span> рублей на развлечения,</div>
+            <div class="string" v-if="toNum" id="relax"><span class="number">{{relax}}</span> рублей на развлечения.</div>
+            <div class="string bordered" v-if="toNum" id="income">100% общий доход:<span class="number">{{income}}</span></div>
             <div class="string" v-if="toNum" id="dream"><span class="number">{{dream}}</span> на мечту,</div>
             <div class="string" v-if="toNum" id="capital"><span class="number">{{capital}}</span> рублей в капитал,</div>
             <div class="string" v-if="toNum" id="current"><span class="number">{{current}}</span> рублей на текущие
@@ -36,55 +36,71 @@
         var app = new Vue({
             el: '#app',
             data: {
-                howMatch: '',
-                income: 0
+                howMatch: ''
             },
             computed: {
+                //общий доход
                 toNum: function () {
                     return parseInt(this.howMatch);
                 },
+                //подушка безопасности
                 nz: function () {
                     if (this.toNum) {
-                        var prom = this.income * 0.1;
+                        var prom = this.familyIncome * 0.1;
                         return Math.round(prom);
                     }
                 },
+                //развлечения
                 relax: function () {
                     if (this.toNum) {
-                        var prom = this.income * 0.1;
+                        var prom = this.familyIncome * 0.1;
                         return Math.round(prom);
                     }
                 },
+                //благотворительность
                 blago: function () {
                     if (this.toNum) {
-                        var prom = this.toNum * 0.01;
+                        var prom = this.toNum * 0.1;
                         return Math.round(prom);
                     }
                 },
+                //родителям
                 parents: function () {
                     if (this.toNum) {
-                        var prom = this.toNum * 0.05;
+                        var prom = this.toNum * 0.1;
                         return Math.round(prom);
                     }
                 },
+                //в капитал
                 capital: function () {
-                    this.income = this.toNum - this.blago - this.parents;
                     if (this.toNum) {
                         var prom = (this.income * 0.55) * 0.8;
                         return Math.round(prom);
                     }
                 },
+                //на мечту
                 dream: function () {
                     if (this.toNum) {
                         var prom = (this.income * 0.55) * 0.2;
                         return Math.round(prom);
                     }
                 },
+                //на текущие расходы
                 current: function () {
                     if (this.toNum) {
                         var prom = this.income * 0.45;
                         return Math.round(prom);
                     }
+                },
+                //100% доход
+                income: function() {
+                    var prom = this.familyIncome - this.nz - this.relax;
+                    return Math.round(prom);
+                },
+                //семейный доход
+                familyIncome: function () {
+                    var prom = this.toNum - this.blago - this.parents;
+                    return Math.round(prom);
                 }
             }
         })
